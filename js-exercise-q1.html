@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .question-box{
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .question-text{
+            font-weight: bold;
+            font-size: 16px !important;
+            background: #e9e9e9;
+            color: black !important;
+        }
+
+        .question-ans{
+            padding-top:10px !important;
+        }
+
+    </style>
+</head>
+<body>
+ 
+<div id="container"></div>
+
+<script>
+
+    
+    var questions = [
+        '1.	Install Node.js and VS Code on your computer.',
+        '2.	Personal Message: Store a person’s name in a variable, and print a message to that person. Your message should be simple, such as, “Hello Eric, would you like to learn some Python today?”',
+        '3.	Name Cases: Store a person’s name in a variable, and then print that person’s name in lowercase, uppercase, and titlecase.',
+        '4.	Famous Quote: Find a quote from a famous person you admire. Print the quote and the name of its author. Your output should look something like the following, including the quotation marks:',
+        '5.	Famous Quote 2: Repeat Exercise 4, but this time store the famous person’s name in a variable called famous_person. Then compose your message and store it in a new variable called message. Print your message.',
+        '6.	Stripping Names: Store a person’s name, and include some whitespace characters at the beginning and end of the name. Make sure you use each character combination, "\t" and "\n", at least once. Print the name once, so the whitespace around the name is displayed. Then print the name after striping the white spaces.',
+        '7.	Number Eight: Write addition, subtraction, multiplication, and division operations that each result in the number 8. Be sure to enclose your operations in print statements to see the results.',
+        '8.	You should create four lines that look like this:',
+        '9.	Favorite Number: Store your favorite number in a variable. Then, using that variable, create a message that reveals your favorite number. Print that message.',
+        '10. Adding Comments: Choose two of the programs you’ve written, and add at least one comment to each. If you don’t have anything specific to write because your programs are too simple at this point, just add your name and the current date at the top of each program file. Then write one sentence describing what the program does.',
+        '11.	Names: Store the names of a few of your friends in a array called names. Print each person’s name by accessing each element in the list, one at a time.',
+        '12.	Greetings: Start with the array you used in Exercise 11, but instead of just printing each person’s name, print a message to them. The text of each message should be the same, but each message should be personalized with the person’s name.',
+        '13.	Your Own Array: Think of your favorite mode of transportation, such as a motorcycle or a car, and make a list that stores several examples. Use your list to print a series of statements about these items, such as “I would like to own a Honda motorcycle.”',
+        '14.	Guest List: If you could invite anyone, living or deceased, to dinner, who would you invite? Make a list that includes at least three people you’d like to invite to dinner. Then use your list to print a message to each person, inviting them to dinner.',
+        '15.	Changing Guest List: You just heard that one of your guests can’t make the dinner, so you need to send out a new set of invitations. You’ll have to think of someone else to invite.',
+        '16.	More Guests: You just found a bigger dinner table, so now more space is available. Think of three more guests to invite to dinner.',
+        '17.	Shrinking Guest List: You just found out that your new dinner table won’t arrive in time for the dinner, and you have space for only two guests.',
+        '18.	Seeing the World: Think of at least five places in the world you’d like to visit.',
+        '19.	Dinner Guests: Working with one of the programs from Exercises 14 through 18, print a message indicating the number of people you are inviting to dinner.',
+        '20.	Think of something you could store in a array. For example, you could make a list of mountains, rivers, countries, cities, languages, or anything else you’d like. Write a program that creates a list containing these items.',
+        '21.	They think of something you could store in a JavaScript Object. Write a program that creates Objects containing these items.',
+        '22.	Intentional Error: If you haven’t received an array index error in one of your programs yet, try to make one happen. Change an index in one of your programs to produce an index error. Make sure you correct the error before closing the program.',
+        '23.	Conditional Tests: Write a series of conditional tests. Print a statement describing each test and your prediction for the results of each test. Your code should look something like this:',
+        '24.	More Conditional Tests: You don’t have to limit the number of tests you create to 10. If you want to try more comparisons, write more tests. Have at least one True and one False result for each of the following:',
+        '25.	Alien Colors #1: Imagine an alien was just shot down in a game. Create a variable called alien_color and assign it a value of green, yellow, or red.',
+        '26.	Alien Colors #2: Choose a color for an alien as you did in Exercise 25, and write an if-else chain.',
+        '27.	Alien Colors #3: Turn your if-else chain from Exercise 5-4 into an if-else chain.',
+        '28.	Stages of Life: Write an if-else chain that determines a person’s stage of life. Set a value for the variable age, and then:',
+        '29.	Favorite Fruit: Make a array of your favorite fruits, and then write a series of independent if statements that check for certain fruits in your array.',
+        '30.	Hello Admin: Make a array of five or more usernames, including the name admin. Imagine you are writing code that will print a greeting to each user after they log in to a website. Loop through the array, and print a greeting to each user:',
+        '31.	No Users: Add an if test to Exercise 28 to make sure the list of users is not empty.',
+        '32.	Checking Usernames: Do the following to create a program that simulates how websites ensure that everyone has a unique username.',
+        '33.	Ordinal Numbers: Ordinal numbers indicate their position in a array, such as 1st or 2nd. Most ordinal numbers end in th, except 1, 2, and 3.',
+        '34.	Pizzas: Think of at least three kinds of your favorite pizza. Store these pizza names in a array, and then use a for loop to print the name of each pizza.',
+        '35.	Animals: Think of at least three different animals that have a common characteristic. Store the names of these animals in a list, and then use a for loop to print out the name of each animal. • Modify your program to print a statement about each animal, such as A dog would make a great pet. • Add a line at the end of your program stating what these animals have in common. You could print a sentence such as Any of these animals would make a great pet!',
+        '36.	T-Shirt: Write a function called make_shirt() that accepts a size and the text of a message that should be printed on the shirt. The function should print a sentence summarizing the size of the shirt and the message printed on it. Call the function.',
+        '37.	Large Shirts: Modify the make_shirt() function so that shirts are large by default with a message that reads I love JavaScript. Make a large shirt and a medium shirt with the default message, and a shirt of any size with a different message.',
+        '38.	Cities: Write a function called describe_city() that accepts the name of a city and its country. The function should print a simple sentence, such as Karachi is in Pakistan. Give the parameter for the country a default value. Call your function for three different cities, at least one of which is not in the default country.',
+        '39.	City Names: Write a function called city_country() that takes in the name of a city and its country. The function should return a string formatted like this:',
+        '40.	Album: Write a function called make_album() that builds a Object describing a music album. The function should take in an artist name and an album title, and it should return a Object containing these two pieces of information. Use the function to make three dictionaries representing different albums. Print each return value to show that Objects are storing the album information correctly. Add an optional parameter to make_album() that allows you to store the number of tracks on an album. If the calling line includes a value for the number of tracks, add that value to the album’s Object. Make at least one new function call that includes the number of tracks on an album.',
+        '41.	Magicians: Make a array of magician’s names. Pass the array to a function called show_magicians(), which prints the name of each magician in the array.',
+        '42.	Great Magicians: Start with a copy of your program from Exercise 39. Write a function called make_great() that modifies the array of magicians by adding the phrase the Great to each magician’s name. Call show_magicians() to see that the list has actually been modified.',
+        '43.	Unchanged Magicians: Start with your work from Exercise 40. Call the function make_great() with a copy of the array of magicians’ names. Because the original array will be unchanged, return the new array and store it in a separate array. Call show_magicians() with each array to show that you have one array of the original names and one array with the Great added to each magician’s name.',
+        '44.	Sandwiches: Write a function that accepts a array of items a person wants on a sandwich. The function should have one parameter that collects as many items as the function call provides, and it should print a summary of the sandwich that is being ordered. Call the function three times, using a different number of arguments each time.',
+        '45.	Cars: Write a function that stores information about a car in a Object. The function should always receive a manufacturer and a model name. It should then accept an arbitrary number of keyword arguments. Call the function with the required information and two other name-value pairs, such as a color or an optional feature. Print the Object that’s returned to make sure all the information was stored correctly.',
+    ];
+
+    /* Printing Questions */
+
+    for(i=0; i<questions.length; i++){
+        var q_html = document.createElement('div');
+        
+        
+         q_html.id = 'q' + (parseInt(i)+1);
+         q_html.className += 'question-box';
+         var q_text = document.createElement('div');
+         q_text.id = 'q' + (parseInt(i)+1) + '-q';
+         q_text.className += 'question-text';
+         q_text.innerHTML = questions[i];
+         var q_ans = document.createElement('div');
+         q_ans.className += 'question-ans';
+         q_ans.id = 'q' + (parseInt(i)+1) + '-a';
+
+         q_html.append(q_text);
+         q_html.append(q_ans);
+
+         document.getElementById('container').append(q_html);
+
+    }
+
+    /* Printing Questions */
+   
+    /* Ex. 2 */
+    var name_q1a = 'Fahad Pasha';
+    document.getElementById('q2-a').innerHTML = 'Hello '+name_q1a+', would you like to learn some Python today?';
+    
+
+    /* Ex. 2 */
+
+    /* Ex. 3 */
+    var name_q2a = 'Fahad';
+    
+    /* Uppercase */
+    var name_q2a_upper = name_q2a.toUpperCase();
+    /* Uppercase */
+
+    /* Lowercase */
+    var name_q2a_lower = name_q2a.toLowerCase();
+    /* Lowercase */
+
+    /* Titlecase */
+    var name_q2a_title = name_q2a.charAt(0).toUpperCase() + name_q2a.substr(1);
+    /* Titlecase */
+
+    document.getElementById('q3-a').innerHTML += 'Uppercase : ' + name_q2a_upper + '<br />';
+    document.getElementById('q3-a').innerHTML += 'Lowercase : ' + name_q2a_lower + '<br />';
+    document.getElementById('q3-a').innerHTML += 'Title Case : ' + name_q2a_title;
+
+    /* Ex. 3 */
+
+    /* Ex. 4 */
+    
+    var q3_quote = 'If you are good at something, never do it for free.';
+
+    document.getElementById('q4-a').innerHTML = 'Joker once said, "' + q3_quote + '"';
+
+    /* Ex. 4 */
+
+    /* Ex. 5 */
+
+    var q4_famous_person = 'Joker';
+    var q4_quote = 'If you are good at something, never do it for free.';
+
+    var q4_quote_final = q4_famous_person + ' once said, "' + q3_quote + '"';
+
+    document.getElementById('q5-a').innerHTML = q4_quote_final;
+
+    /* Ex. 5 */
+
+    /* Ex. 6 */
+    var name_q5 = 'Fahad';
+
+    var name_q5_ws = "\t" + name_q5 + "\t" + "\n";
+
+    document.getElementById('q6-a').innerHTML += name_q5_ws + '<br />';
+    document.getElementById('q6-a').innerHTML += name_q5_ws.trim();
+
+    /* Ex. 6 */
+
+    /* Ex. 7 and 8*/
+
+    console.log(4+4);
+    console.log(16-8);
+    console.log(2*4);
+    console.log(32/4);
+
+    /* Ex. 7 and 8*/
+
+    /* Ex. 9 */
+
+    var q9_fvt_number = 8;
+
+    var q9_message = 'My favorite number is ' + q9_fvt_number;
+
+    document.getElementById('q9-a').innerHTML += q9_message; 
+
+    /* Ex. 9 */
+
+    /* Ex. 11 */
+
+    var q7_name = ['Daniyal','Fakhir','Shoaib','Adil'];
+
+    for(i=0; i<q7_name.length; i++){
+        document.getElementById('q11-a').innerHTML += q7_name[i] + '<br />';
+    }
+
+    /* Ex. 11 */
+
+    /* Ex. 12 */
+
+    for(i=0; i<q7_name.length; i++){
+        var q8_message = 'How is everything, ' + q7_name[i] + '?' + '<br />';
+        document.getElementById('q12-a').innerHTML += q8_message;
+    }
+
+    /* Ex. 12 */
+
+    /* Ex. 13 */
+    var q9_bikes = ['Yamaha','Honda','Suzuki','Unique','Superpower'];
+
+    for (i=0; i<q9_bikes.length; i++){
+        q9_message = 'Me ta ' + q9_bikes[i] + ' hi lessan' + '<br />';
+
+        document.getElementById('q13-a').innerHTML += q9_message; 
+    }
+
+
+    /* Ex. 13 */
+
+    /* Ex. 14 */
+
+     var q10_invitees = ['Mahnoor','Alisha','Mirha'];
+
+     for (i=0; i<q10_invitees.length; i++){
+         q10_message = 'Hello ' + q10_invitees[i] + ', I would like to invite you to a birthday dinner';
+
+         document.getElementById('q14-a').innerHTML += q10_message + '<br />';
+     }
+
+    /* Ex. 14 */
+
+    /* Ex. 15 */
+
+      for (i=0; i<q10_invitees.length; i++){
+         q11_message = 'Hello ' + q10_invitees[i] + ', I would like to invite you to a birthday dinner';
+
+         document.getElementById('q15-a').innerHTML += q11_message + '<br />';
+     }
+
+     document.getElementById('q15-a').innerHTML += q10_invitees[2] + ' cannot make it.<br />';
+
+     q10_invitees[2] = 'Arooba';
+
+     for (i=0; i<q10_invitees.length; i++){
+         q11_message = 'Hello ' + q10_invitees[i] + ', I would like to invite you to a birthday dinner';
+
+         document.getElementById('q15-a').innerHTML += q11_message + '<br />';
+     }
+
+    /* Ex. 15 */
+
+    /* Ex. 16 */
+
+      q10_invitees.unshift('Hamza'); // Adding item at the beginning of the array
+     q10_invitees.splice(3,0,'Zain'); // Adding item at the middle of the array
+
+
+     for (i=0; i<q10_invitees.length; i++){
+         q12_message = 'Hello ' + q10_invitees[i] + ', I would like to invite you to a birthday dinner';
+
+     document.getElementById('q16-a').innerHTML += q12_message + '<br />';
+     }
+
+     var q12_append_text = 'Hello Fahad, I would like to invite you to a birthday dinner';
+
+     document.getElementById('q16-a').append(q12_append_text); // Appending text at the end
+
+    /* Ex. 16 */
+
+    /* Ex. 17 */
+
+     for (i=q10_invitees.length - 1; q10_invitees.length > 2; i--){
+        var q17_pop = q10_invitees.pop();
+        document.getElementById('q17-a').innerHTML += q17_pop + ' is uninvited<br />' ;
+
+     }
+
+     for (i=0; i<q10_invitees.length; i++){
+         q12_message = 'Hello ' + q10_invitees[i] + ', You are still invited';
+
+     document.getElementById('q17-a').innerHTML += q12_message + '<br />';
+     }
+
+     q10_invitees = [];
+
+     document.getElementById('q17-a').innerHTML += 'Remaining : <br />';
+     
+     for (i=0; i<q10_invitees.length; i++){
+         q12_message = 'Hello ' + q10_invitees[i] + ', You are still invited';
+
+     document.getElementById('q17-a').innerHTML += q12_message + '<br />';
+     }
+    /* Ex. 17 */
+
+    /* Ex. 18 */
+
+    var q18_places = ['Switzerland','Norway','Iceland','Makkah','Cheel Chowk'];
+
+    var new_array = [];//q18_places;
+
+    var places_org = new_array.concat(q18_places);
+
+    for (i in q18_places){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in places_org.sort()){
+        document.getElementById('q18-a').innerHTML += places_org[i] + '<br />';
+    }
+
+    for (i in q18_places){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in places_org.reverse()){
+        document.getElementById('q18-a').innerHTML += places_org[i] + '<br />';
+    }
+
+    for (i in q18_places){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in q18_places.reverse()){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in q18_places.reverse()){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in q18_places.sort()){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    for (i in q18_places.reverse()){
+        document.getElementById('q18-a').innerHTML += q18_places[i] + '<br />';
+    }
+
+    /* Ex. 18 */
+
+    /* Ex. 19 */
+
+    var no_cities = q18_places.length;
+
+    document.getElementById('q19-a').innerHTML += 'Number of Cities : ' + no_cities;
+
+    /* Ex. 19 */
+
+    /* Ex. 20 and 21 */
+
+    var q20_mountains = ['Mount Everest','K2','Gasherbrum 1','Gasherbrum 2','Nanga Parbat'];
+
+    const q20_obj = [];
+
+    for (i in q20_mountains){
+        q20_obj[i] = {'mountain_name':q20_mountains[i]};
+    }
+
+    /* Ex. 20 and 21 */
+
+    /* Ex. 22 */
+
+    console.log(q20_mountains[10]);
+
+    /* Ex. 22 */
+
+    /* Ex. 23 */
+
+    let lang = 'English';
+
+    let q23_score = 78;
+
+    console.log(lang == 'English'); // true
+    console.log(lang.length == 7); // true
+    console.log(lang.charAt(0) == 'E'); // true
+
+    console.log(q23_score > 50); // true
+    console.log(q23_score > 50 && q23_score < 100); // true
+
+    console.log(lang != 'English'); // false
+    console.log(lang.length < 7); // false
+    console.log(lang.charAt(0) == 'X'); // false
+
+    console.log(q23_score < 50);  // false
+    console.log(q23_score > 100); // false
+
+    /* Ex. 23 */
+
+    /* Ex. 24 */
+
+    var q24_text1 = 'What';
+    var q24_text2 = 'Wat';
+
+    var q24_num1 = 88;
+    var q24_num2 = 89;
+
+    var q24_arr = ['Pakistan','India','Bangladesh'];
+
+    console.log(q24_text1 != q24_text2);
+    console.log(q24_text1 == q24_text2);
+
+    console.log(q24_text1.toLowerCase() != q24_text2.toLowerCase());
+    console.log(q24_text1.toLowerCase() == q24_text2.toLowerCase());
+
+    console.log(q24_num1 != q24_num2);
+    console.log(q24_num1 == q24_num2);
+
+    console.log(q24_num1 < q24_num2);
+    console.log(q24_num1 > q24_num2);
+
+    console.log(q24_num1 < 100 && q24_num1 > 50);
+    console.log(q24_num1 < 50 && q24_num1 > 100);
+
+    console.log(q24_num1 < 100 || q24_num1 < 50);
+    console.log(q24_num1 < 50 || q24_num1 > 100);
+
+    console.log(q24_arr.includes('Pakistan'));
+    console.log(q24_arr.includes('USA'));
+
+    console.log(q24_arr.includes('Pakistan') == false);
+    console.log(q24_arr.includes('USA') == false);
+
+    /* Ex. 24 */
+
+    /* Ex. 25 */
+
+    var q25_alien_color = 'green';
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q25-a').innerHTML += 'Congratulations! You have earned 5 points<br />';
+    }
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q25-a').innerHTML += 'Congratulations! You have earned 5 points';
+    };
+    if(q25_alien_color == 'red'){
+        document.getElementById('q25-a').innerHTML += '';
+    }
+
+
+
+    /* Ex. 25 */
+
+    /* Ex. 26 */
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q26-a').innerHTML += 'Congratulations! You have earned 5 points<br />';
+    }else{
+        document.getElementById('q26-a').innerHTML += 'Congratulations! You have earned 10 points<br />';  
+    };
+
+    q25_alien_color = 'red';
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q26-a').innerHTML += 'Congratulations! You have earned 5 points';
+    }else{
+        document.getElementById('q26-a').innerHTML += 'Congratulations! You have earned 10 points';  
+    };
+
+    /* Ex. 26 */
+
+    /* Ex. 27 */
+
+    q25_alien_color = 'green';
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 5 points<br />';
+    }else if(q25_alien_color == 'yellow'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 10 points<br />';  
+    }else if(q25_alien_color == 'red'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 15 points<br />';  
+    };
+
+    q25_alien_color = 'yellow';
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 5 points<br />';
+    }else if(q25_alien_color == 'yellow'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 10 points<br />';  
+    }else if(q25_alien_color == 'red'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 15 points<br />';  
+    };
+
+    q25_alien_color = 'red';
+
+    if(q25_alien_color == 'green'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 5 points<br />';
+    }else if(q25_alien_color == 'yellow'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 10 points<br />';  
+    }else if(q25_alien_color == 'red'){
+        document.getElementById('q27-a').innerHTML += 'Congratulations! You have earned 15 points<br />';  
+    };
+
+    /* Ex. 27 */
+
+    /* Ex. 28 */
+    
+    var q28_age = 28;
+
+    if(q28_age < 2){
+        document.getElementById('q28-a').innerHTML += 'The person is baby';
+    }else if(q28_age > 2 && q28_age < 4){
+        document.getElementById('q28-a').innerHTML += 'The person is toddler';
+    }else if(q28_age > 4 && q28_age < 13){
+        document.getElementById('q28-a').innerHTML += 'The person is kid';
+    }else if(q28_age > 13 && q28_age < 20){
+        document.getElementById('q28-a').innerHTML += 'The person is teenager';
+    }else if(q28_age > 20 && q28_age < 65){
+        document.getElementById('q28-a').innerHTML += 'The person is adult';
+    }else if(q28_age > 65 ){
+        document.getElementById('q28-a').innerHTML += 'The person is elder';
+    }
+
+    /* Ex. 28 */
+
+    /* Ex. 29 */
+
+    var q29_favorite_fruit = ['Mango','Banana','Grapes'];
+
+    if(q29_favorite_fruit.includes('Mango')){
+        document.getElementById('q29-a').innerHTML += 'You really like Mangoes<br />'; 
+    }
+
+    if(q29_favorite_fruit.includes('Tomato')){
+        document.getElementById('q29-a').innerHTML += 'You really like Tomatoes<br />'; 
+    }
+
+    if(q29_favorite_fruit.includes('Banana')){
+        document.getElementById('q29-a').innerHTML += 'You really like Bananas<br />'; 
+    }
+
+    if(q29_favorite_fruit.includes('Grapes')){
+        document.getElementById('q29-a').innerHTML += 'You really like Grapes<br />'; 
+    }
+
+    if(q29_favorite_fruit.includes('Pear')){
+        document.getElementById('q29-a').innerHTML += 'You really like Pears<br />'; 
+    }
+
+
+    /* Ex. 29 */
+
+    /* Ex. 30 */
+
+    var q30_username = ['admin','fahad','zain','daniyal','mirha'];
+
+    for (i in q30_username){
+        if(q30_username[i] == 'admin'){
+            document.getElementById('q30-a').innerHTML += 'Hello '+q30_username[i]+', would you like to see a status report?<br />';
+        }else{
+            document.getElementById('q30-a').innerHTML += 'Welcome ' +q30_username[i]+'<br />';
+        }
+    }
+
+    /* Ex. 30 */
+
+    /* Ex. 31 */
+
+    q30_username = [];
+
+    if(q30_username.length == 0){
+        document.getElementById('q31-a').innerHTML += 'We need to find some users!';
+    }
+
+    /* Ex. 31 */
+
+    /* Ex. 32 */
+
+    var q32_current_users = ['admin','fahad','zain','daniyal','mirha'];
+    var q32_new_users = ['fakhir','babar','fahad','daniyal','mahnoor'];
+
+    for (i in q32_new_users){
+        if(q32_current_users.includes(q32_new_users[i])){
+            document.getElementById('q32-a').innerHTML += 'Username '+q32_new_users[i]+' is already in use, Please enter a new username.<br />';
+        }else{
+            document.getElementById('q32-a').innerHTML += 'Username '+q32_new_users[i]+' is available<br />';
+        }
+    }
+
+    /* Ex. 32 */
+
+    /* Ex. 33 */
+
+    var q33_number = [1,2,3,4,5,6,7,8,9];
+
+    for (i in q33_number){
+        var q33_suffix;
+        if (q33_number[i] == 1){
+            q33_suffix = 'st';
+        }else if(q33_number[i] == 2){
+            q33_suffix = 'nd';
+        }else if(q33_number[i] == 3){
+            q33_suffix = 'rd';
+        }else{
+            q33_suffix = 'th';
+        }
+        document.getElementById('q33-a').innerHTML += q33_number[i] + q33_suffix + '<br />';
+    }
+
+    /* Ex. 33 */
+
+    /* Ex. 34 */
+
+    var q34_pizza = ['Fajita','Pepperoni','Cheesy Delight'];
+
+    for (i in q34_pizza){
+        document.getElementById('q34-a').innerHTML += 'I really love ' + q34_pizza[i] + ' pizza<br />';
+    }
+
+    document.getElementById('q34-a').innerHTML += 'I love all the pizzas';
+
+    /* Ex. 34 */
+
+    /* Ex. 35 */
+
+    var q35_animals = ['Dog','Cat','Sheep'];
+
+    for(i in q35_animals){
+        document.getElementById('q35-a').innerHTML += q35_animals[i] + ' would be a great pet<br />';
+    }
+
+    document.getElementById('q35-a').innerHTML += 'All of these animals are great pets';
+
+    
+
+    /* Ex. 35 */
+
+    /* Ex. 36 */
+
+    function make_shirt(psize,ptext){
+        var message = 'A ' + psize + ' shirt with ' + ptext + ' written on it';
+        return message;
+    }
+
+    document.getElementById('q36-a').innerHTML += make_shirt('Large','I <3 Fahad');
+
+    /* Ex. 36 */
+
+    /* Ex. 37 */
+
+    function make_shirt(psize = 'Large',ptext = 'I love Javascript'){
+        var message = 'A ' + psize + ' shirt with ' + ptext + ' written on it';
+        return message;
+    }
+
+    document.getElementById('q37-a').innerHTML += make_shirt() + '<br />';
+    document.getElementById('q37-a').innerHTML += make_shirt('Medium') + '<br />';
+
+    document.getElementById('q37-a').innerHTML += make_shirt('Small','Javascript is worth it') + '<br />';
+
+    /* Ex. 37 */
+
+    /* Ex. 38 */
+
+    function define_city(pcity,pcountry = 'Pakistan'){
+        var message = pcity + ' is in ' + pcountry;
+        return message;
+    }
+
+    document.getElementById('q38-a').innerHTML += define_city('Karachi') + '<br />';
+    document.getElementById('q38-a').innerHTML += define_city('Lahore') + '<br />';
+    document.getElementById('q38-a').innerHTML += define_city('Kabul','Afghanistan') + '<br />';
+
+    /* Ex. 38 */
+
+    /* Ex. 39 */
+
+    function city_country(pcity,pcountry){
+        var message = pcity + ', ' + pcountry;
+        return message;
+    }
+
+    document.getElementById('q39-a').innerHTML += city_country('Karachi','Pakistan') + '<br />';
+    document.getElementById('q39-a').innerHTML += city_country('Toronto','Canada') + '<br />';
+    document.getElementById('q39-a').innerHTML += city_country('Beijing','China') + '<br />';
+
+    /* Ex. 39 */
+
+    /* Ex. 40 */
+
+    function make_album(partist,palbum,ptracks){
+        if(ptracks==undefined){
+            ptracks = 0;
+        }
+
+        if(ptracks == 0){
+        var obj = {'name':partist,'title':palbum};
+        }else{
+            var obj = {'name':partist,'title':palbum,'no_tracks':ptracks};    
+        }
+        return obj;
+    }
+
+    var q40_album1 = make_album('Atif Aslam','Aadat');
+    var q40_album2 = make_album('Ali Zafar','Jhoom');
+    var q40_album3 = make_album('Linkin Park','Meteorite',4);
+
+    document.getElementById('q40-a').innerHTML += q40_album1.title + ' by ' + q40_album1.name + '<br />';
+    document.getElementById('q40-a').innerHTML += q40_album2.title + ' by ' + q40_album2.name + '<br />';
+    document.getElementById('q40-a').innerHTML += q40_album3.title + ' by ' + q40_album3.name + ', Number of Tracks : ' + q40_album3.no_tracks;
+
+    /* Ex. 40 */
+
+    /* Ex. 41 */    
+
+    var q41_magicians = ['Daniel Atlas','Merrit Mckinney','Dylan Rhodes'];
+    function show_magicians(parray,pdiv=41){
+        for (i in parray){
+            document.getElementById('q'+pdiv+'-a').innerHTML += parray[i] + '<br />';
+        }
+    }
+
+    show_magicians(q41_magicians,41);
+
+    /* Ex. 41 */
+
+    /* Ex. 42 */
+
+    function make_great(parray){
+        for (i in parray){
+            parray[i] = 'The Great ' + parray[i];
+        }
+        return parray;
+    }
+
+    make_great(q41_magicians);
+    show_magicians(q41_magicians,42);
+
+    /* Ex. 42 */
+
+    /* Ex. 43 */
+
+    function make_great_43(parray){
+        var new_array = [];
+        for (i in parray){
+            new_array[i] = 'The Great ' + parray[i];
+        }
+        return new_array;
+    }
+
+
+    q41_magicians = ['Daniel Atlas','Merrit Mckinney','Dylan Rhodes'];
+
+    var q43_magicians_new = make_great_43(q41_magicians);
+
+    show_magicians(q41_magicians,43);    
+    show_magicians(q43_magicians_new,43);
+    /* Ex. 43 */
+
+    /* Ex. 44 */
+
+    function show_sandwich_items(){
+        document.getElementById('q44-a').innerHTML += 'List of items in sandwich : <br />';
+        for(i in arguments){
+            document.getElementById('q44-a').innerHTML += arguments[i] + '<br />';
+        }
+    }
+
+    show_sandwich_items('Mayonnaise','Onion','Tomato','Steak','Lettuce');
+
+    /* Ex. 44 */
+
+    /* Ex. 45 */
+
+    function get_car(pmodel,pmanufacturer){
+        console.log(arguments);
+
+        var ret_obj = {};
+        
+        for(i in arguments){
+            if(typeof arguments[i] != 'object'){
+                
+                if(i==0){
+                    var obj_name = 'Model';
+                }else if(i==1){
+                    var obj_name = 'Manufacturer';    
+                }else{
+                    var obj_name = 'Others';  
+                }
+                ret_obj[obj_name] = arguments[i];
+            }else{
+                for (var key in arguments[i]){
+                    if(arguments[i].hasOwnProperty(key)){
+                        ret_obj[key] = arguments[i][key];
+                    }
+                }
+            }
+        }
+
+        return ret_obj; 
+
+    }
+
+    var car = get_car(
+        2022,
+        'Civic',
+        {'color':'red'},
+        {'feature':'ABS'}
+    );
+
+    document.getElementById('q45-a').innerHTML += car.Model + '<br />';
+    document.getElementById('q45-a').innerHTML += car.Manufacturer + '<br />';
+    document.getElementById('q45-a').innerHTML += car.color + '<br />';
+    document.getElementById('q45-a').innerHTML += car.feature + '<br />';
+
+    /* Ex. 45 */
+
+
+
+</script>
+
+</body>
+</html>
